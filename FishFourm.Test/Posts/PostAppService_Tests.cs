@@ -16,14 +16,14 @@ namespace FishFourm.Test.Posts
     public class PostAppService_Tests : FishFourmTestBase
     {
         private readonly IPostAppService _postAppService;
+        private readonly IUserRepository _userRepositoryMock;
+        private readonly IPostRepository _postRepositoryMock;
 
         public PostAppService_Tests()
         {
-            var _postRepositoryMock = Substitute.For<IPostRepository>();
-            var _userRepositoryMock = Substitute.For<IUserRepository>();
-            var _postAppService = new PostAppService(_postRepositoryMock, _userRepositoryMock);
-         
-            
+             _postRepositoryMock = Substitute.For<IPostRepository>();
+             _userRepositoryMock = Substitute.For<IUserRepository>();
+             _postAppService = new PostAppService(_postRepositoryMock, _userRepositoryMock);    
         }
 
         [Fact]
@@ -67,6 +67,7 @@ namespace FishFourm.Test.Posts
                 Content = "HI",
                 Title = "title5"
             };
+            _postRepositoryMock.InsertAsync(postDto)
             var flag = await _postAppService.CreatePost(postDto);
             Assert.True(flag);
             var count = UsingDbContext(a => a.Post.Count());
