@@ -60,6 +60,7 @@ namespace FishFourm.Test.Posts
         [Fact]
         public async Task CreatePost_Test()
         {
+            //Arrange
             var countBefore = UsingDbContext(a => a.Post.Count());
             CreatePostDto postDto = new CreatePostDto()
             {
@@ -67,11 +68,21 @@ namespace FishFourm.Test.Posts
                 Content = "HI",
                 Title = "title5"
             };
-            _postRepositoryMock.InsertAsync(postDto)
+            var post = new Post(postDto.AuthorId, postDto.Title, postDto.Content);
+            _postRepositoryMock.InsertAsync(post).Returns(Arg.Is<Post>(a=>a.Title==post.Title && a.AuthorId == post.AuthorId),post);
+
+            //Act
             var flag = await _postAppService.CreatePost(postDto);
-            Assert.True(flag);
             var count = UsingDbContext(a => a.Post.Count());
-            Assert.Equal(countBefore+1, count);
+
+            //Assert
+            await _postRepositoryMock.Received().InsertAsync(Arg.Is<Post>( 
+            a=>a.Content==post.Content
+            &&a.AuthorId==post.AuthorId
+            &&a.Title==post.Title));       
+            
+            Assert.True(flag);
+            Assert.Equal(countBefore + 1, count);
         }
 
         [Fact]
