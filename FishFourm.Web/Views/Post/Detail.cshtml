@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <style type="text/css">
+        .luntan_arctile_title {
+            color: #05247B;
+            float: left;
+            margin-left: 40px;
+            font-size: 16px;
+        }
+
+        .luntan_arctile_pinglun {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .luntan_article_headurl {
+            padding-left: 50px;
+            padding-top: 20px;
+            width: 100px;
+            float: left;
+        }
+
+            .luntan_article_headurl img {
+                border: 1px solid #00008b;
+                width: 88px;
+                height: 88px;
+            }
+
+        .luntan_article_content {
+            margin-right: 50px;
+            padding-top: 20px;
+            float: right;
+            width: 770px;
+            font-size: 13px;
+        }
+
+            .luntan_article_content img {
+                max-width: 600px;
+            }
+
+        .luntan_article_1 {
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+
+
+        .comment_headurl {
+            margin-left: 50px;
+            padding-top: 15px;
+            float: left;
+        }
+
+        .comment_content {
+            width: 770px;
+            margin-right: 50px;
+            padding-top: 20px;
+            float: right;
+        }
+
+
+
+        .comment_li {
+            border-top: 1px solid #E8E8E8;
+        }
+
+        .comment_headurl img {
+            border: 1px solid #00008b;
+            width: 88px;
+            height: 88px;
+        }
+
+        .comment_name {
+            padding-left: 10px;
+        }
+
+        .comment_huifu {
+            text-align: right;
+            width: 770px;
+            float: right;
+            margin-right: 50px;
+            margin-top: 75px;
+        }
+
+            .comment_huifu span {
+                padding-right: 7px;
+                color: #999999;
+            }
+
+        .luntan_pager {
+            background-color: #F7F8FA;
+            height: 60px;
+            width: 1001px;
+            border-top: 1px solid #E8E8E8;
+        }
+
+        .luntan_pager1 {
+            width: 450px;
+            height: 20px;
+            margin-left: 240px;
+        }
+
+        .luntan_comment {
+            -webkit-box-shadow: 1px 0px 1px #E8E8E8; /*webkit*/
+            box-shadow: 1px 0px 2px #E8E8E8; /*opera或ie9*/
+            background-color: #f0fff0;
+            width: 1001px;
+            height: 500px;
+            margin-top: 3px;
+            border-top: 1px solid #E8E8E8;
+        }
+
+        .luntan_comment_area1 {
+            resize: none;
+            width: 650px;
+            height: 250px;
+        }
+
+        .luntan_comment_area {
+            padding-left: 235px;
+            margin-top: 10px;
+        }
+
+        .luntan_comment_fabiao_span {
+            padding-top: 20px;
+            padding-left: 235px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .luntan_comment_sumbit {
+            margin-top: 10px;
+            padding-left: 235px;
+        }
+
+        .huifulist {
+            float: right;
+            width: 770px;
+            margin-right: 50px;
+        }
+
+            .huifulist ul li {
+                border-right: 1px solid #F0F1F2;
+                border-left: 1px solid #F0F1F2;
+                background-color: #F7F8FA;
+                border-bottom: 1px solid #E8E8E8;
+            }
+
+        .huifu_li {
+            padding-top: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+        }
+
+        .huifu_textarea {
+            height: 150px;
+            margin-left: 0px;
+            margin-top: 15px;
+            background: #F0FFF0;
+        }
+
+            .huifu_textarea textarea {
+                height: 80px;
+                border: 1px solid rgb(232, 232, 232);
+                margin-top: 20px;
+                resize: none;
+            }
+
+        .huifu_submit {
+            margin-left: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #menuBg {
+            padding-right: 0px;
+            margin-top: 67px;
+        }
+        /*QQ表情*/
+        span.emotion {
+            width: 42px;
+            height: 20px;
+            background: url("/Content/arclist/icon.gif") no-repeat 2px 2px;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+            span.emotion:hover {
+                background-position: 2px -28px;
+            }
+
+        .qqFace {
+            margin-top: 4px;
+            background: #fff;
+            padding: 2px;
+            border: 1px #dfe6f6 solid;
+        }
+
+            .qqFace table td {
+                padding: 0px;
+            }
+
+                .qqFace table td img {
+                    cursor: pointer;
+                    border: 1px #fff solid;
+                }
+
+                    .qqFace table td img:hover {
+                        border: 1px #0066cc solid;
+                    }
+
+        #show {
+            width: 770px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 5px;
+            border: 1px solid #DDD;
+            vertical-align: top;
+        }
+
+        .shuoyiju {
+            width: 60px;
+            height: 25px;
+            margin-left: 720px;
+            padding-top: 4px;
+        }
+
+        .commentDate {
+            width: 750px;
+            height: 30px;
+            background-color: aquamarine;
+        }
+
+        .huifu_li_content {
+            width: 650px;
+            float: right;
+        }
+
+        .huifu_li_user {
+            width: 50px;
+            float: left;
+            margin-right: 10px;
+        }
+
+            .huifu_li_user img {
+                width: 50px;
+                height: 50px;
+            }
+
+        .huifu_li_date {
+            text-align: right;
+        }
+
+            .huifu_li_date a {
+                padding-left: 15px;
+            }
+    </style>
+
+</head>
+<body>
+    <!-- ko with: post -->
+    <div class=" kongbai" style="height:20px;"></div>
+    <div class="luntan_arctile_top">
+        <div class="luntan_arctile_title" data-bind="text:title">
+            标题
+        </div>
+        <div class="luntan_arctile_pinglun">
+            <a href="#luntan_comment_area" name="#luntan_comment_area">评论</a>
+        </div>
+    </div>
+    <div style="clear:both; height:20px;"></div>
+    <div class="luntan_article">
+        <div class="luntan_article_1">
+            <div class="luntan_article_headurl">
+                <img src=" ViewBag.Posts.PoPhotoUrl" />
+                <div class="POName" data-bind="text:authorName">UserName</div>
+            </div>
+            <div class="luntan_article_content" data-bind="text:content">
+                Content
+            </div>
+        </div>
+
+    </div>
+    <div style="clear:both; height:20px;"></div>
+
+
+    <div id="comment" class="comment">
+        <ul class="comment_ul">
+            <li class="comment_li">
+                <div class="comment_content1">
+                    <div class="comment_headurl">
+                        <img src="item.ComPhotoUrl" />
+                        <div class="comment_name">item.ComUserName</div>
+                    </div>
+                    <div class="comment_content">
+                     PostsComment.PoCom_Content)
+                    </div>
+                    <div class="comment_huifu">
+                        <span>
+                            <a href="javascript:" class="deleteComment" id="deleteComment_ item.PostsComment.PoCom_Id">
+                                删除
+                            </a>
+                        </span>
+                        <span>1 楼</span>
+                        <span>PoCom_Date</span>
+                        <a class="huifu" href="javascript:" id="commentId_ item.PostsComment.PoCom_Id">回复[5]</a>
+                    </div>
+                    <div class="huifulist" id="ReComId_ item.PostsComment.PoCom_Id">
+                        <ul>
+                            <li>
+                                <div class="huifu_li">
+                                    <div class="huifu_li_user">
+                                        <img src=" list.RePhotoUrl" />
+                                    </div>
+                                    <div class="huifu_li_content">
+                                        <span class="huifu_name"> list.ReUserName.ToString().Trim()</span>
+                                        <span class="huifuren_Id" hidden="hidden"> list.ReMId.ToString().Trim()</span>
+                                        <span>回复 </span>
+                                        <span> list.ReMember_M.Member_UserName.ToString().Trim()</span>
+                                        list.PostsReply.PoRe_Content
+                                    </div>
+                                    <div style="clear:both"></div>
+                                    <div class="huifu_li_date">
+                                        <span><a href="javascript:" class="deleteReply" id="deleteReply_ list.PostsReply.PoRe_Id">删除</a></span>
+                                        <span> list.PostsReply.PoRe_Date</span>
+                                        <span><a>回复</a></span>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                        <div class="shuoyiju"><a href="javascript:">我说一句</a></div>
+                    </div>
+                </div>
+                <div style="clear:both; height:20px;"></div>
+            </li>
+
+        </ul>
+    </div>
+    <!-- /ko -->
+    <script>
+        var post = JSON.parse('@Html.Raw(ViewBag.Detail)').data;
+        function ReservationsViewModel() {
+            var self = this;
+            self.post = post;
+          }
+          var viewModel = new ReservationsViewModel();
+          ko.applyBindings(viewModel);
+
+    </script>
+</body>
+</html>
