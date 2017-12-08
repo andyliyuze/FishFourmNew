@@ -46,6 +46,8 @@ namespace FishFourm.Test.Posts
             var _userRepositoryMock = Substitute.For<IUserRepository>();
             var postAppServiceMock = new PostAppService(_postRepositoryMock, _userRepositoryMock);
             _postRepositoryMock.GetAsync(Id).Returns(Task.FromResult(post));
+
+            //此时的_userRepositoryMock是桩对象，用来使方法运行通过
             _userRepositoryMock.GetAsync(post.AuthorId).Returns(Task.FromResult(new User("li")));
 
             //Act
@@ -58,7 +60,7 @@ namespace FishFourm.Test.Posts
            
         }
 
-        //测试交互，就是测试方法有没有没争取调用
+        //测试交互
         [Fact]
         public async Task CreatePost_Test()
         {
@@ -70,11 +72,17 @@ namespace FishFourm.Test.Posts
             };
             var post = new Post(postDto.AuthorId, postDto.Title, postDto.Content);
 
+
+            //此时的_postRepositoryMock是模拟对象，用来断言
             //只要InsertAsync方法接收到这些参数值就返回post实例
             _postRepositoryMock.InsertAsync(Arg.Is<Post>(
             a => a.Content == post.Content
             && a.AuthorId == post.AuthorId
             && a.Title == post.Title)).Returns(post);
+
+
+           
+           await  _postAppService.Received().CreatePost(postDto);
 
             //Act
             var flag = await _postAppService.CreatePost(postDto);
