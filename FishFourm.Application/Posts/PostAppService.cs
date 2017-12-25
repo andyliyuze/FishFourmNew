@@ -50,6 +50,7 @@ namespace FishFourm.Application.Posts
             {
                 return null;
             }
+            var post2 =  _postRepository.Single(a => a.Id == postId);
             var user = await _userRepository.GetAsync(post.AuthorId);
             //两次Map才能拿到完整的postDto
             var postDto = post.MapTo<PostDto>();

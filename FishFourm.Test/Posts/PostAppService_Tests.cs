@@ -11,7 +11,8 @@ using NSubstitute;
 using AutoMapper;
 using FishFourm.Core.Repository;
 using FishFourm.EntityFramework.Repository;
-
+using System;
+using System.Linq.Expressions;
 namespace FishFourm.Test.Posts
 {
     public class PostAppService_Tests : FishFourmTestBase
@@ -46,6 +47,11 @@ namespace FishFourm.Test.Posts
             var _userRepositoryMock = Substitute.For<IUserRepository>();
             var postAppServiceMock = new PostAppService(_postRepositoryMock, _userRepositoryMock);
             _postRepositoryMock.GetAsync(Id).Returns(Task.FromResult(post));
+
+            //_postRepositoryMock.Single(Arg.Any<Expression<Func<Post, bool>>>()).Returns(post);
+
+
+            _postRepositoryMock.Single(Arg.Is<Expression<Func<Post, bool>>>(a => a.Compile()(post))).Returns(post);
 
             //此时的_userRepositoryMock是桩对象，用来使方法运行通过
             _userRepositoryMock.GetAsync(post.AuthorId).Returns(Task.FromResult(new User("li")));
