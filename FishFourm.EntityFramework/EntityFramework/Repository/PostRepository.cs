@@ -22,8 +22,7 @@ namespace FishFourm.EntityFramework.Repository
 
         public async Task<IEnumerable<Post>> GetPostsByAuthorId(Guid authorId)
         {
-            var post = await Context.Post.Where(a => a.AuthorId == authorId && a.IsDel == false).ToListAsync();
-           await InsertAndGetIdAsync(post.FirstOrDefault());
+            var post = await this.Context.Post.Where(a => a.AuthorId == authorId && a.IsDel == false).ToListAsync();
             return post;
         }
 

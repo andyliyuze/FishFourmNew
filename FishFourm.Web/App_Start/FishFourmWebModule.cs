@@ -14,7 +14,6 @@ using System.Web.Routing;
 namespace FishFourm.Web.App_Start
 {
     [DependsOn(
-      
       typeof(FishFourmWebApiModule),
       typeof(AbpWebMvcModule))]
     public class FishFourmWebModule : AbpModule

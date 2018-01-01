@@ -17,5 +17,11 @@ namespace FishFourm.EntityFramework.Repository
 
 
         }
+
+        public async Task<Guid> CreateUser(User user)
+        {
+            await this.InsertAsync(user);
+            return user.Id;
+        }
     }
 }

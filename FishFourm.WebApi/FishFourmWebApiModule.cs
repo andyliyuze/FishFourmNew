@@ -12,10 +12,9 @@ using System.Web.Http.Cors;
 namespace FishFourm.WebApi
 {
     [DependsOn(
-        typeof(AbpWebApiModule),
-       typeof(FishFourmApplicationMoulde)
-      , typeof(FishFourmEntityFrameworkMoulde)
-     
+         typeof(AbpWebApiModule),
+         typeof(FishFourmApplicationMoulde),
+         typeof(FishFourmEntityFrameworkMoulde)
        )]
     public class FishFourmWebApiModule : AbpModule
     {
@@ -28,7 +27,7 @@ namespace FishFourm.WebApi
         public override void Initialize()
         {
             //This code is used to register classes to dependency injection system for this assembly using conventions.
-             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+            IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
             var config = Configuration.Modules.AbpWebApi().HttpConfiguration;
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             config.MapHttpAttributeRoutes();

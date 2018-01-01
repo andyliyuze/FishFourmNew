@@ -14,7 +14,6 @@ namespace FishFourm.Application.Posts
 {
     public class PostAppService : ApplicationService, IPostAppService
     {
-
         private readonly IPostRepository _postRepository;
         private readonly IUserRepository _userRepository;
         public PostAppService(IPostRepository postRepository,
@@ -38,7 +37,7 @@ namespace FishFourm.Application.Posts
                            Content = p.Content,
                            CreateTime = p.CreateTime,
                            Title = p.Title,
-                           AuthorName = u.Name
+                           AuthorName = u.UserName
                        };
             return dtos;
         }
@@ -72,7 +71,7 @@ namespace FishFourm.Application.Posts
             var user = await _userRepository.GetAsync(authorId);
             foreach (var item in postDtos)
             {
-                item.AuthorName = user.Name;
+                item.AuthorName = user.UserName;
             }
 
             return postDtos;

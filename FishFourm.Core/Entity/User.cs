@@ -15,7 +15,7 @@ namespace FishFourm.Core.Entity
 
         public User(string name)
         {
-            Name = name;
+            UserName = name;
             Id = Guid.NewGuid();
         }
 
@@ -23,7 +23,18 @@ namespace FishFourm.Core.Entity
         {
             Id = id;
         }
-       
-        public string Name { get; private set; }
+
+        public void Update(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                throw new Exception("用户名不能为空");
+            }
+            this.UserName = userName;
+        }
+
+        public string UserName { get; private set; }
+
+        
     }
 }

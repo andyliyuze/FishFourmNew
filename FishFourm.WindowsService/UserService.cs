@@ -1,35 +1,40 @@
-﻿using MassTransit;
+﻿
+using Abp;
+using FishFourm.Application.Users;
+using FishFourm.WindowsService.Consumers;
+using MassTransit;
+using MassTransit.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Topshelf;
 
 namespace FishFourm.WindowsService
 {
     class UserService : ServiceControl
     {
+        private  AbpBootstrapper _abpBootstrapper;
+        
         IBusControl _bus;
+
         public bool Start(HostControl hostControl)
         {
             _bus = ConfigureBus();
-            _bus.Start();
-
+           // _bus.Start();
+            TaskUtil.Await(() => _bus.StartAsync());
             return true;
         }
 
         public bool Stop(HostControl hostControl)
         {
             _bus?.Stop(TimeSpan.FromSeconds(30));
-
             return true;
         }
 
-
         IBusControl ConfigureBus()
         {
-            return Bus.Factory.CreateUsingRabbitMq(cfg =>
+            using (_abpBootstrapper = AbpBootstrapper.Create<FishFourmWinServiceModule>())
+            {
+                _abpBootstrapper.Initialize();
+                return Bus.Factory.CreateUsingRabbitMq(cfg =>
             {
                 var host = cfg.Host(new Uri("rabbitmq://localhost"), h =>
                 {
@@ -39,10 +44,13 @@ namespace FishFourm.WindowsService
 
                 cfg.ReceiveEndpoint(host, "userRegisted_queue", e =>
                 {
-                    e.Handler<UserRegisted>(context =>
-                        Console.Out.WriteLineAsync($"User Registed: {context.Message}"));
+                    var service = _abpBootstrapper.IocManager.Resolve<IUserAppService>();
+
+                    e.Consumer<UserRegistedComsumer>(() => new UserRegistedComsumer(service));
+                    e.Consumer<UserUpdatedConsumer>(() => new UserUpdatedConsumer(service));
                 });
             });
+            }
         }
     }
 }

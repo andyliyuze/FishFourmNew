@@ -34,8 +34,7 @@ namespace FishFourm.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-        
+                   
             modelBuilder.Types().Configure(d =>
             {
                 var nonPublicProperties = d.ClrType.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);

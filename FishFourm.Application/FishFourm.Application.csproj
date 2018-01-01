@@ -142,15 +142,21 @@
     <Reference Include="System.Xml.XPath.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Xml.XPath.XmlDocument.4.3.0\lib\net46\System.Xml.XPath.XmlDocument.dll</HintPath>
     </Reference>
+    <Reference Include="UserSystem.MessageContract">
+      <HintPath>C:\Users\andy\Documents\Visual Studio 2017\Projects\UserSystem\UserSystem.MessageContract\bin\Release\UserSystem.MessageContract.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FishFourmApplicationMoulde.cs" />
     <Compile Include="Posts\Dtos\CreatePostDto.cs" />
-    <Compile Include="Posts\Dtos\MapConfig.cs" />
+    <Compile Include="MapConfig.cs" />
     <Compile Include="Posts\Dtos\PostDto.cs" />
     <Compile Include="Posts\IPostAppService.cs" />
     <Compile Include="Posts\PostAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\IUserAppService.cs" />
+    <Compile Include="Users\DTO\UserDTO.cs" />
+    <Compile Include="Users\UserAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FishFourm.Core\FishFourm.Core.csproj">

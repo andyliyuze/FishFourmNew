@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Abp;
+using MassTransit.Log4NetIntegration.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,9 @@ namespace FishFourm.WindowsService
     {
         static void Main(string[] args)
         {
-            HostFactory.Run(cfg => cfg.Service(x => new UserService()));
+                // MassTransit to use Log4Net
+                Log4NetLogger.Use();
+                HostFactory.Run(cfg => cfg.Service(x => new UserService()));    
         }
     }
 }
