@@ -5,7 +5,7 @@ using FishFourm.Common;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-
+using System.Linq;
 namespace FishFourm.Api.Controllers
 {
     [RoutePrefix("api/post")]
@@ -59,6 +59,7 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [Route("postList")]
         [HttpGet]
+        [Authorize]
         public async Task<JsonResponse> PostList()
         {
             var posts = await _postAppService.GetAllPost();

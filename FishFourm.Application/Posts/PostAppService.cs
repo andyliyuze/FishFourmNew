@@ -39,6 +39,7 @@ namespace FishFourm.Application.Posts
                            Title = p.Title,
                            AuthorName = u.UserName
                        };
+            var count = dtos.Count();
             return dtos;
         }
 

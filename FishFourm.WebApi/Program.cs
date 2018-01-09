@@ -13,7 +13,7 @@ namespace FishFourm.WebApi
         static void Main(string[] args)
         {
             const string uri = "http://localhost:5256/";
-            using (WebApp.Start(uri, Startup.Configuration))
+            using (WebApp.Start<Startup>(uri))
             {
               
                 Console.WriteLine("Started listening on " + uri);
