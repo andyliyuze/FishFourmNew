@@ -241,9 +241,9 @@
       <Project>{c03af894-ce09-4534-a36b-65ad88bd657f}</Project>
       <Name>FishFourm.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FIshFourm.Common\FIshFourm.Common.csproj">
+    <ProjectReference Include="..\FIshFourm.Common\FishFourm.Common.csproj">
       <Project>{d8008b56-608b-45c6-984e-d2d98bde4d29}</Project>
-      <Name>FIshFourm.Common</Name>
+      <Name>FishFourm.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FishFourm.EntityFramework\FishFourm.EntityFramework.csproj">
       <Project>{C40A9F7C-8940-4C9C-A070-338E9E250D24}</Project>

@@ -258,6 +258,7 @@
     <Compile Include="Content\ueditor\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="Content\ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="Content\ueditor\net\App_Code\UploadHandler.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -953,9 +954,9 @@
       <Project>{c03af894-ce09-4534-a36b-65ad88bd657f}</Project>
       <Name>FishFourm.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FIshFourm.Common\FIshFourm.Common.csproj">
+    <ProjectReference Include="..\FIshFourm.Common\FishFourm.Common.csproj">
       <Project>{d8008b56-608b-45c6-984e-d2d98bde4d29}</Project>
-      <Name>FIshFourm.Common</Name>
+      <Name>FishFourm.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FishFourm.Core\FishFourm.Core.csproj">
       <Project>{ac2b0ab6-7360-402b-9d87-205aac124b3f}</Project>

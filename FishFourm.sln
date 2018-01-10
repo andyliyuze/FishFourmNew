@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.WebApi", "FishFou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.WindowsService", "FishFourm.WindowsService\FishFourm.WindowsService.csproj", "{4ED13AD4-BA9A-48AF-920E-AE32D2D0F168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIshFourm.Common", "FIshFourm.Common\FIshFourm.Common.csproj", "{D8008B56-608B-45C6-984E-D2D98BDE4D29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Common", "FIshFourm.Common\FishFourm.Common.csproj", "{D8008B56-608B-45C6-984E-D2D98BDE4D29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

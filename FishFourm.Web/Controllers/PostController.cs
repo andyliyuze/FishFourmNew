@@ -13,13 +13,18 @@ using FishFourm.Application.Posts.Dtos;
 
 namespace FishFourm.Web.Controllers
 {
-    public class PostController : AbpController
+    public class PostController : BaseController
     {
         private const string URL = "http://localhost:5256/api/post/";
         // GET: Post
         public async Task<ActionResult> Index()
         {
-            ViewBag.posts = await PostsList();
+            var posts = await PostsList();
+            if (posts.ToString() == "Unauthorized")
+            {
+              return  Redirect("http://localhost:56995/Users/Login");
+            }
+            ViewBag.posts = posts;
             return View();
         }
 
@@ -30,20 +35,12 @@ namespace FishFourm.Web.Controllers
 
         private async Task<object> PostsList()
         {
-            using (HttpClient client = new HttpClient())
+            var result = await HttpClientHepler.GetAsync(URL + "postList");
+            if (result.StatusCode == WebApiStatusCode.Unauthorized)
             {
-                using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, URL + "postList"))
-                {
-                    // client_id and client_secret: http://tools.ietf.org/html/rfc6749#section-2.3.1
-                    using (HttpResponseMessage response = await client.SendAsync(request))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var result = await response.Content.ReadAsStringAsync();
-                        return result;
-                    }
-                }
-
+                return "Unauthorized";
             }
+            return result;
         }
 
         public async Task<ActionResult> Detail(Guid id)
