@@ -954,7 +954,7 @@
       <Name>FishFourm.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\FishFourm.Common\FishFourm.Common.csproj">
-      <Project>{467E5774-7612-4FD0-B8CB-7F76D6783779}</Project>
+      <Project>{1b8c9b34-2e4f-48a5-85ed-3d516de185a8}</Project>
       <Name>FishFourm.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FishFourm.Core\FishFourm.Core.csproj">

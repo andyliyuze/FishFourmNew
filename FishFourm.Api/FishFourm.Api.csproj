@@ -281,6 +281,10 @@
       <Project>{c03af894-ce09-4534-a36b-65ad88bd657f}</Project>
       <Name>FishFourm.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FishFourm.Common\FishFourm.Common.csproj">
+      <Project>{1b8c9b34-2e4f-48a5-85ed-3d516de185a8}</Project>
+      <Name>FishFourm.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
