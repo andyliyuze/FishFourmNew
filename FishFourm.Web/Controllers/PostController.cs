@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Abp.Json;
 using FishFourm.Common;
 using Newtonsoft.Json;
+using FishFourm.Application.Posts.Dtos;
+
 namespace FishFourm.Web.Controllers
 {
     public class PostController : AbpController
@@ -84,7 +86,7 @@ namespace FishFourm.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Create(PostInput postInput)
+        public async Task<string> Create(CreatePostDto postInput)
         {
             using (HttpClient client = new HttpClient())
             {

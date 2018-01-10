@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B8C9B34-2E4F-48A5-85ED-3D516DE185A8}</ProjectGuid>
+    <ProjectGuid>{D8008B56-608B-45C6-984E-D2D98BDE4D29}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FishFourm.Common</RootNamespace>
-    <AssemblyName>FishFourm.Common</AssemblyName>
+    <RootNamespace>FIshFourm.Common</RootNamespace>
+    <AssemblyName>FIshFourm.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="JsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

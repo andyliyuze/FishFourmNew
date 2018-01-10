@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.WebApi", "FishFou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.WindowsService", "FishFourm.WindowsService\FishFourm.WindowsService.csproj", "{4ED13AD4-BA9A-48AF-920E-AE32D2D0F168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Common", "FishFourm.Common\FishFourm.Common.csproj", "{1B8C9B34-2E4F-48A5-85ED-3D516DE185A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIshFourm.Common", "FIshFourm.Common\FIshFourm.Common.csproj", "{D8008B56-608B-45C6-984E-D2D98BDE4D29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +61,10 @@ Global
 		{4ED13AD4-BA9A-48AF-920E-AE32D2D0F168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED13AD4-BA9A-48AF-920E-AE32D2D0F168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED13AD4-BA9A-48AF-920E-AE32D2D0F168}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B8C9B34-2E4F-48A5-85ED-3D516DE185A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B8C9B34-2E4F-48A5-85ED-3D516DE185A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B8C9B34-2E4F-48A5-85ED-3D516DE185A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B8C9B34-2E4F-48A5-85ED-3D516DE185A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
