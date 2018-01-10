@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Test", "FishFourm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Core", "FishFourm.Core\FishFourm.Core.csproj", "{AC2B0AB6-7360-402B-9D87-205AAC124B3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Api", "FishFourm.Api\FishFourm.Api.csproj", "{BFEC9E37-FE27-41DF-B5E2-3D885FFEED71}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Application", "FishFourm.Application\FishFourm.Application.csproj", "{C03AF894-CE09-4534-A36B-65AD88BD657F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.EntityFramework", "FishFourm.EntityFramework\FishFourm.EntityFramework.csproj", "{C40A9F7C-8940-4C9C-A070-338E9E250D24}"
@@ -41,10 +39,6 @@ Global
 		{AC2B0AB6-7360-402B-9D87-205AAC124B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC2B0AB6-7360-402B-9D87-205AAC124B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC2B0AB6-7360-402B-9D87-205AAC124B3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFEC9E37-FE27-41DF-B5E2-3D885FFEED71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFEC9E37-FE27-41DF-B5E2-3D885FFEED71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFEC9E37-FE27-41DF-B5E2-3D885FFEED71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFEC9E37-FE27-41DF-B5E2-3D885FFEED71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C03AF894-CE09-4534-A36B-65AD88BD657F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C03AF894-CE09-4534-A36B-65AD88BD657F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C03AF894-CE09-4534-A36B-65AD88BD657F}.Release|Any CPU.ActiveCfg = Release|Any CPU
