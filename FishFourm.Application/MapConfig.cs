@@ -2,14 +2,11 @@
 using FishFourm.Application.Posts.Dtos;
 using FishFourm.Application.Users.DTO;
 using FishFourm.Core.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UserSystem.MessageContract;
 
 namespace FishFourm.Application
 {
-   public class MapConfig
+    public class MapConfig
     {
         public static void Config()
         {

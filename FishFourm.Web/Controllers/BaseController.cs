@@ -30,7 +30,7 @@ namespace FishFourm.Web.Controllers
 
         public BaseController()
         {
-           
+
         }
     }
 }
