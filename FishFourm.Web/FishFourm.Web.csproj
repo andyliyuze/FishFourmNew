@@ -250,6 +250,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\FishFourmWebModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attribute\CustomAuthorizeAttribute.cs" />
     <Compile Include="Content\ueditor\net\App_Code\Config.cs" />
     <Compile Include="Content\ueditor\net\App_Code\ConfigHandler.cs" />
     <Compile Include="Content\ueditor\net\App_Code\CrawlerHandler.cs" />

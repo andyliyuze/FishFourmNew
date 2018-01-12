@@ -10,20 +10,22 @@ using Abp.Json;
 using FishFourm.Common;
 using Newtonsoft.Json;
 using FishFourm.Application.Posts.Dtos;
+using FishFourm.Web.Attribute;
 
 namespace FishFourm.Web.Controllers
 {
+
+
     public class PostController : BaseController
     {
         private const string URL = "http://localhost:5256/api/post/";
+
+       [CustomAuthorizeAttribute]
         // GET: Post
         public async Task<ActionResult> Index()
         {
             var posts = await PostsList();
-            if (posts.ToString() == "Unauthorized")
-            {
-              return  Redirect("http://localhost:56995/Users/Login");
-            }
+           
             ViewBag.posts = posts;
             return View();
         }

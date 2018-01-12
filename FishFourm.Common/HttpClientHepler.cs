@@ -12,7 +12,7 @@ namespace FishFourm.Common
         public HttpClientHepler()
         {
             _httpClient = new HttpClient();
-            _httpClient.Timeout = TimeSpan.FromSeconds(5);
+            _httpClient.Timeout = TimeSpan.FromSeconds(30);
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace FishFourm.Common
         public HttpClientHepler(string authorizationType, string value)
         {
             _httpClient = new HttpClient();
-            _httpClient.Timeout = TimeSpan.FromSeconds(5);
+            _httpClient.Timeout = TimeSpan.FromSeconds(30);
             _httpClient.DefaultRequestHeaders.Add("Authorization",
                 string.Format("{0} {1}", authorizationType, value));
         }
