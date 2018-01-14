@@ -178,9 +178,8 @@
     <Reference Include="Topshelf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <HintPath>..\packages\Topshelf.4.0.3\lib\net452\Topshelf.dll</HintPath>
     </Reference>
-    <Reference Include="UserSystem.MessageContract, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\UserSystem.MessageContract.dll</HintPath>
+    <Reference Include="UserSystem.MessageContract">
+      <HintPath>..\bin\UserSystem.MessageContract.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

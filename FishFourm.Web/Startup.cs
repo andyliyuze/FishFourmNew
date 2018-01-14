@@ -1,34 +1,22 @@
-﻿using Microsoft.Owin;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Owin;
 using Owin;
-using System.Web.Http;
-using System.Web.Http.Cors;
-using FishFourm.WebApi.App_Start;
-using Abp.Owin;
-using Abp.WebApi.Configuration;
-using Abp;
-using System.Configuration;
 using Microsoft.Owin.Security.DataHandler.Encoder;
+using System.Configuration;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security;
 
-[assembly: OwinStartup(typeof(FishFourm.WebApi.Startup))]
+[assembly: OwinStartup(typeof(FishFourm.Web.Startup))]
 
-namespace FishFourm.WebApi
+namespace FishFourm.Web
 {
     public class Startup
     {
-        public  void Configuration(IAppBuilder appBuilder)
-        {   
-            var bootstrapper = AbpBootstrapper.Create<FishFourmWebApiModule>();
-            bootstrapper.Initialize();
-
-            // 有关如何配置应用程序的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=316888
-            // Configure Web API for Self-Host
-            var httpConfig = bootstrapper.IocManager.Resolve<IAbpWebApiConfiguration>().HttpConfiguration;
-            appBuilder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            ConfigureOAuth(appBuilder);
-            appBuilder.UseWebApi(httpConfig);
-          
+        public void Configuration(IAppBuilder app)
+        {
+            // 有关如何配置应用程序的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkID=316888
+            ConfigureOAuth(app);
         }
 
         public void ConfigureOAuth(IAppBuilder app)

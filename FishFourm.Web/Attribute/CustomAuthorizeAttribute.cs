@@ -11,15 +11,13 @@ namespace FishFourm.Web.Attribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            //if (httpContext.Request.Cookies["token"] == null)
+            //{
+            //    return false;
+            //}
 
-
-
-            if (httpContext.Request.Cookies["token"] == null)
-            {
-                return false;
-            }
-
-            return true;
+            //return true;
+            return base.AuthorizeCore(httpContext);
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

@@ -23,10 +23,10 @@ namespace FishFourm.Application.Posts
             _userRepository = userRepository;
         }
 
-        public async Task<IEnumerable<PostDto>> GetAllPost()
+        public async Task<IList<PostDto>> GetAllPost()
         {
             var posts = await _postRepository.GetAllListAsync();
-            var users = await _userRepository.GetAllListAsync();
+            var users = _userRepository.GetAll();
             var dtos = from p in posts
                        join u in users on p.AuthorId equals u.Id
                        select new PostDto
@@ -39,19 +39,32 @@ namespace FishFourm.Application.Posts
                            Title = p.Title,
                            AuthorName = u.UserName
                        };
-            var count = dtos.Count();
-            return dtos;
+         dtos =  dtos.Where(a => a.IsDel == false).ToList();
+            var postsdto = posts.Join(users, a => a.AuthorId, b => b.Id,
+                (a, b) => new PostDto
+                {
+                    Id = a.Id,
+                    AlterTime = a.AlterTime,
+                    AuthorId = a.AuthorId,
+                    AuthorName = b.UserName,
+                    Content = a.Content,
+                    CreateTime = a.CreateTime,
+                    Title = a.Title
+                }).ToList();
+            return dtos.ToList();
         }
 
         public async Task<PostDto> ReadPost(Guid postId)
         {
             var post = await _postRepository.GetAsync(postId);
+
             if (post == null)
             {
                 return null;
             }
-            var post2 =  _postRepository.Single(a => a.Id == postId);
+    
             var user = await _userRepository.GetAsync(post.AuthorId);
+            
             //两次Map才能拿到完整的postDto
             var postDto = post.MapTo<PostDto>();
             Mapper.Map(user, postDto);

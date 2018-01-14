@@ -9,7 +9,7 @@ namespace FishFourm.Application.Posts
 {
     public interface IPostAppService: IApplicationService
     {
-        Task<IEnumerable<PostDto>> GetAllPost();
+        Task<IList<PostDto>> GetAllPost();
 
         Task<PostDto> ReadPost(Guid Id);
 

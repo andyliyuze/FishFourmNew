@@ -143,7 +143,7 @@
       <HintPath>..\packages\System.Xml.XPath.XmlDocument.4.3.0\lib\net46\System.Xml.XPath.XmlDocument.dll</HintPath>
     </Reference>
     <Reference Include="UserSystem.MessageContract">
-      <HintPath>..\FishFourm.WindowsService\bin\Debug\UserSystem.MessageContract.dll</HintPath>
+      <HintPath>..\bin\UserSystem.MessageContract.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
