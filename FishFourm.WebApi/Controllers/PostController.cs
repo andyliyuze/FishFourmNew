@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Linq;
 using System.Collections.Generic;
+using FishFourm.WebApi.Controllers;
 
 namespace FishFourm.Api.Controllers
 {
+    [AuthorizeAttribute]
     [RoutePrefix("api/post")]
     /// <summary>
     /// 111
     /// </summary>
-    public class PostController : AbpApiController
+    public class PostController : BaseApiController
     {
 
         private readonly IPostAppService _postAppService;
@@ -35,7 +37,7 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("readPost")]
-        [AuthorizeAttribute]
+       
         public async Task<JsonResponse> ReadPost(string id)
         {
             var post = await _postAppService.ReadPost(Guid.Parse(id));
@@ -52,6 +54,7 @@ namespace FishFourm.Api.Controllers
         [Route("createPost")]
         public async Task<JsonResponse> CreatePost(CreatePostDto dto)
         {
+            dto.AuthorId = UserInfo.Id;
             var flag = await _postAppService.CreatePost(dto);
             return new JsonResponse(flag, 200);
         }
@@ -62,7 +65,7 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [Route("postList")]
         [HttpGet]
-        [AuthorizeAttribute]
+     
         public async Task<JsonResponse> PostList()
         {
 

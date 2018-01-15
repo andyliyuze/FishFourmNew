@@ -228,6 +228,7 @@
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\SwaggerNet.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="FishFourmWebApiModule.cs" />

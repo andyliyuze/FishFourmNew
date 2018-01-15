@@ -919,7 +919,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ueditor\controller.ashx" />
     <Content Include="Content\ueditor\net\config.json" />
     <Content Include="Content\ueditor\net\controller.ashx" />
     <Content Include="Content\ueditor\net\Web.config" />
@@ -928,6 +927,8 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Detail.html" />
+    <Content Include="Create.html" />
+    <Content Include="Content\ueditor\controller.ashx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

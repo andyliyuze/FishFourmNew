@@ -280,7 +280,7 @@
                 <img src=" ViewBag.Posts.PoPhotoUrl" />
                 <div class="POName" data-bind="text:authorName">UserName</div>
             </div>
-            <div class="luntan_article_content" data-bind="text:content">
+            <div class="luntan_article_content" data-bind="html:content">
                 Content
             </div>
         </div>
@@ -430,6 +430,7 @@
               var r = window.location.search.substr(1).match(reg);  //匹配目标参数
               if (r != null) return unescape(r[2]); return null; //返回参数值
           }
+       
     </script>
 
     <script>
@@ -447,6 +448,7 @@
                     data: { id: Id },
                     success: function (data) {
                         console.log(data);
+                        //data.data.content = htmlDecode(data.data.content);
                         self.post(data.data);
                     }
                 });

@@ -16,11 +16,12 @@ namespace FishFourm.Web.Controllers
 {
 
 
+    [CustomAuthorizeAttribute]
     public class PostController : BaseController
     {
         private const string URL = "http://localhost:5256/api/post/";
 
-       [CustomAuthorizeAttribute]
+      
         // GET: Post
         public async Task<ActionResult> Index()
         {

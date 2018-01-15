@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="luntan_detail">
-                        <div class="luntan_onlyline" data-bind="text:content"> </div>
+                        <div class="luntan_onlyline" data-bind="html:content"> </div>
                     </div>
                 </div>
                 <div style="clear:both"></div>
@@ -144,7 +144,6 @@
             self.posts = ko.observableArray();
         }
       
-
         $(function () {
             var viewModel = new ReservationsViewModel();
             ko.applyBindings(viewModel);
@@ -169,6 +168,8 @@
             else
                 return null;
         } 
+
+    
     </script>
     <script>
         (function ($) {
