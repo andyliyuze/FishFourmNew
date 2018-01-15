@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="Scripts/jquery-1.8.2.min.js"></script>
-    <!--<script src="~/Scripts/knockout-3.4.2.js"></script>-->
+    <script src="/Scripts/knockout-3.4.2.js"></script>
 
     <style type="text/css">
         body {
@@ -99,13 +99,13 @@
     </style>
 </head>
 <body>
-    <div>
+    <div >
         <ul class="luntan_ul" id="luntan_ul" data-bind="foreach:{data:posts}">
             <li>
                 <div class="luntan_list">
                     <div class="luntan_top">
                         <div class="luntan_title">
-                            <a data-bind="text:title,attr:{ href:'/post/Detail?id='+id }"></a>
+                            <a data-bind="text:title,attr:{ href:'/Detail.html?id='+id }"></a>
                         </div>
                         <div class="luntan_author">
                             <span data-bind="text:authorName"></span>
@@ -122,34 +122,36 @@
         <div class=" kongbai" style="height:20px;"></div>
     </div>
     <script>
-        var postList;
-        $(function () {
-          
-            $.ajax({
-                async: false,
-                url: "http://localhost:5256/api/post/postList",
-                type: "get",
-                dataType: "json",
-              
-                success: function (data) {
-                    console.log(data);
-                    postList = JSON.parse(data).data;
-                },
-                headers:
-                {
-                    'Authorization': 'bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ5Y2M2NTI5LTdmNDYtNGM4OS1hODgxLTMyZmRkMjczNWU0OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJMaXl1emUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2FjY2Vzc2NvbnRyb2xzZXJ2aWNlLzIwMTAvMDcvY2xhaW1zL2lkZW50aXR5cHJvdmlkZXIiOiJBU1AuTkVUIElkZW50aXR5IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJjMDJiNzY2YS05NTdiLTQ4NDItODUwYS01OTUxNTk3NWVmMjYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoie1wiSWRcIjpcImQ5Y2M2NTI5LTdmNDYtNGM4OS1hODgxLTMyZmRkMjczNWU0OFwiLFwiVXNlck5hbWVcIjpcIkxpeXV6ZVwiLFwiQmlydGhEYXlcIjpcIjE5OTMtMTAtMjNUMDA6MDA6MDBcIn0iLCJuYmYiOjE1MTU5NDIwMjQsImV4cCI6MTUxNTk0MzgyNCwiaXNzIjoiaHR0cDovL2p3dGF1dGh6c3J2LmF6dXJld2Vic2l0ZXMubmV0IiwiYXVkIjoiYW55In0.QOqkz0G-ubk-KL4LxPh7aTagAm_eWqNOc-XIkwH6N48'
-                }
-            });
-        });
-      
-      
-        //function ReservationsViewModel() {
-        //    self.posts =postList;
-        //}
-        //var viewModel = new ReservationsViewModel();
-        //ko.applyBindings(viewModel);
-        //写cookies 
+        
+        function ReservationsViewModel() {
+     
+            var self = this;
 
+            self.getPosts = function ()
+            {
+                $.ajax({
+                
+                    url: "http://localhost:5256/api/post/postList",
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        self.posts(data.data);
+                    }
+                });
+            }
+
+            self.posts = ko.observableArray();
+        }
+      
+
+        $(function () {
+            var viewModel = new ReservationsViewModel();
+            ko.applyBindings(viewModel);
+            viewModel.getPosts();
+        });
+
+        // 写cookies 
         function setCookie(name, value) {
             var Days = 30;
             var exp = new Date();
@@ -182,7 +184,7 @@
                             var authorizedEnpoint = "http://localhost:56995/Users/Login";
                             var return_url = location.href;
                             var client_id = '97a9b860-0692-4d10-9103-5b301886b0cf';
-                            var grant_type = 'pasword';
+                            var grant_type = 'password';
                             location.href = authorizedEnpoint
                                 + "?redirect_uri=" + return_url + ""
                                 + "&client_Id=" + client_id + ""
@@ -223,7 +225,8 @@
                     },
                     complete: function (XHR, TS) {
                         fn.complete(XHR, TS);
-                    }
+                    },
+                    headers : fn.headers
                 });
                 //5.将最新的参数传回ajax对象
                 _ajax(_options);

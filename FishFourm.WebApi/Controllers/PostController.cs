@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Linq;
- 
+using System.Collections.Generic;
 
 namespace FishFourm.Api.Controllers
 {
@@ -35,6 +35,7 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("readPost")]
+        [AuthorizeAttribute]
         public async Task<JsonResponse> ReadPost(string id)
         {
             var post = await _postAppService.ReadPost(Guid.Parse(id));
@@ -62,11 +63,14 @@ namespace FishFourm.Api.Controllers
         [Route("postList")]
         [HttpGet]
         [AuthorizeAttribute]
-        public async Task<IHttpActionResult> PostList()
+        public async Task<JsonResponse> PostList()
         {
-            return Redirect("http://www.baidu.com");
-            //var posts = await _postAppService.GetAllPost();
-            //return new JsonResponse(posts, 200);
+
+            var c = RequestContext;
+
+          
+            var posts = await _postAppService.GetAllPost();
+            return new JsonResponse(posts, 200);
         }
        
     }
