@@ -2,6 +2,7 @@
 using Abp;
 using FishFourm.Application.Users;
 using FishFourm.WindowsService.Consumers;
+using GreenPipes;
 using MassTransit;
 using MassTransit.Util;
 using System;
@@ -18,7 +19,7 @@ namespace FishFourm.WindowsService
         public bool Start(HostControl hostControl)
         {
             _bus = ConfigureBus();
-           // _bus.Start();
+            // _bus.Start();
             TaskUtil.Await(() => _bus.StartAsync());
             return true;
         }
@@ -42,13 +43,22 @@ namespace FishFourm.WindowsService
                     h.Password("guest");
                 });
 
-                cfg.ReceiveEndpoint(host, "userRegisted_queue", e =>
-                {
-                    var service = _abpBootstrapper.IocManager.Resolve<IUserAppService>();
+                var service = _abpBootstrapper.IocManager.Resolve<IUserAppService>();
 
+                cfg.ReceiveEndpoint(host, "userRegisted_queue", e =>
+                {       
+                    //每隔5秒尝试消费一次
+                    e.UseRetry(retryConfig => retryConfig.Interval(5,TimeSpan.FromSeconds(5)));
                     e.Consumer<UserRegistedComsumer>(() => new UserRegistedComsumer(service));
                     e.Consumer<UserUpdatedConsumer>(() => new UserUpdatedConsumer(service));
                 });
+
+                //cfg.ReceiveEndpoint(host, "userUpdated_queue", e =>
+                //{
+                //    //每隔5秒尝试消费一次
+                //    e.UseRetry(retryConfig => retryConfig.Interval(5, TimeSpan.FromSeconds(5)));   
+                //    e.Consumer<UserUpdatedConsumer>(() => new UserUpdatedConsumer(service));
+                //});
             });
             }
         }
