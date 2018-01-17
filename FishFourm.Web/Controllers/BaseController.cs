@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
- 
+using System.Net;
 
 namespace FishFourm.Web.Controllers
 {
@@ -28,9 +28,15 @@ namespace FishFourm.Web.Controllers
             }
         }
 
-        public BaseController()
+        protected virtual ActionResult CreateRequest(Func<HttpResponseMessage> func)
         {
+            var response = func.Invoke();
 
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                return View("/users/login");
+            }
+            return null;
         }
     }
 }
