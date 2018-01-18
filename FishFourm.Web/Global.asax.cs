@@ -1,4 +1,5 @@
-﻿using Abp.Dependency;
+﻿using Abp.Castle.Logging.Log4Net;
+using Abp.Dependency;
 using Abp.Web;
 using Castle.Facilities.Logging;
 using FishFourm.Web.App_Start;
@@ -16,6 +17,7 @@ namespace FishFourm.Web
     {
         protected override void Application_Start(object sender, EventArgs e)
         {
+            
             base.Application_Start(sender, e);          
         }
     }

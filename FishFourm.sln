@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.WindowsService", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.Common", "FIshFourm.Common\FishFourm.Common.csproj", "{D8008B56-608B-45C6-984E-D2D98BDE4D29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishFourm.WebApp", "FishFourm.WebApp\FishFourm.WebApp.csproj", "{9EBEA7DB-9D50-415A-AC73-7437CE6881F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8008B56-608B-45C6-984E-D2D98BDE4D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBEA7DB-9D50-415A-AC73-7437CE6881F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBEA7DB-9D50-415A-AC73-7437CE6881F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBEA7DB-9D50-415A-AC73-7437CE6881F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBEA7DB-9D50-415A-AC73-7437CE6881F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

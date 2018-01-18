@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FishFourmApplicationMoulde.cs" />
+    <Compile Include="MeasureDurationInterceptor.cs" />
     <Compile Include="Posts\Dtos\CreatePostDto.cs" />
     <Compile Include="MapConfig.cs" />
     <Compile Include="Posts\Dtos\PostDto.cs" />

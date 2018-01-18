@@ -11,6 +11,8 @@ namespace FishFourm.Application
         public override void PreInitialize()
         {
             MapConfig.Config();
+            MeasureDurationInterceptorRegistrar.Initialize(IocManager.IocContainer.Kernel);
+
         }
         public override void Initialize()
         {

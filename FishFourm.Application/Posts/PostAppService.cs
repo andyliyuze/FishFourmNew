@@ -9,6 +9,7 @@ using AutoMapper;
 using FishFourm.Core.Entity;
 
 using System.Linq;
+using Abp.Authorization;
 
 namespace FishFourm.Application.Posts
 {
@@ -53,6 +54,8 @@ namespace FishFourm.Application.Posts
                 }).ToList();
             return dtos.ToList();
         }
+
+        
 
         public async Task<PostDto> ReadPost(Guid postId)
         {
