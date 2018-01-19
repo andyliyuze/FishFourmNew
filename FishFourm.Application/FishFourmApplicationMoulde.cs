@@ -1,4 +1,5 @@
 ﻿using Abp.Modules;
+using FishFourm.Application.Interceptors;
 using FishFourm.Application.Posts.Dtos;
 using FishFourm.Core;
 using System.Reflection;
@@ -12,7 +13,6 @@ namespace FishFourm.Application
         {
             MapConfig.Config();
             MeasureDurationInterceptorRegistrar.Initialize(IocManager.IocContainer.Kernel);
-
         }
         public override void Initialize()
         {

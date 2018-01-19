@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Castle.Core;
+using Castle.Core.Interceptor;
 using Castle.Core.Logging;
 using Castle.DynamicProxy;
 using Castle.MicroKernel;
@@ -10,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FishFourm.Application
+namespace FishFourm.Application.Interceptors
 {
-    public class MeasureDurationInterceptor : IInterceptor
+    public class MeasureDurationInterceptor : IInterceptor 
     {
         private readonly ILogger _logger;
 
@@ -28,8 +29,9 @@ namespace FishFourm.Application
             var stopwatch = Stopwatch.StartNew();
 
             //Executing the actual method
-            invocation.Proceed();
+            invocation.ReturnValue = null;
 
+            invocation.Proceed();
             //After method execution
             stopwatch.Stop();
             _logger.InfoFormat(
@@ -37,7 +39,7 @@ namespace FishFourm.Application
                 invocation.MethodInvocationTarget.Name,
                 stopwatch.Elapsed.TotalMilliseconds.ToString("0.000")
                 );
-        }
+        }  
     }
 
     public static class MeasureDurationInterceptorRegistrar
@@ -52,6 +54,7 @@ namespace FishFourm.Application
             if (typeof(IApplicationService).IsAssignableFrom(handler.ComponentModel.Implementation))
             {
                 handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(MeasureDurationInterceptor)));
+            //    handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(MeasureDurationAsyncInterceptor)));
             }
         }
     }

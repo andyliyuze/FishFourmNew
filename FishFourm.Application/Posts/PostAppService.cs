@@ -10,11 +10,13 @@ using FishFourm.Core.Entity;
 
 using System.Linq;
 using Abp.Authorization;
+using Abp.Runtime.Caching;
 
 namespace FishFourm.Application.Posts
 {
     public class PostAppService : ApplicationService, IPostAppService
     {
+        private readonly ICacheManager _cacheManager;
         private readonly IPostRepository _postRepository;
         private readonly IUserRepository _userRepository;
         public PostAppService(IPostRepository postRepository,
@@ -55,12 +57,12 @@ namespace FishFourm.Application.Posts
             return dtos.ToList();
         }
 
-        
+         
 
         public async Task<PostDto> ReadPost(Guid postId)
-        {
-            var post = await _postRepository.GetAsync(postId);
-
+        { 
+           var post = await _postRepository.GetAsync(postId);
+      
             if (post == null)
             {
                 return null;
@@ -82,8 +84,8 @@ namespace FishFourm.Application.Posts
         }
 
         public async Task<IEnumerable<PostDto>> GetPostsByAuthorId(Guid authorId)
-        {
-            var posts = await _postRepository.GetPostsByAuthorId(authorId);
+        {  
+            var posts = await _postRepository.GetAllListAsync(a => a.AuthorId == authorId);
             var postDtos = posts.MapTo<IEnumerable<PostDto>>();
             var user = await _userRepository.GetAsync(authorId);
             foreach (var item in postDtos)

@@ -148,7 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FishFourmApplicationMoulde.cs" />
-    <Compile Include="MeasureDurationInterceptor.cs" />
+    <Compile Include="Interceptors\MeasureDurationAsyncInterceptor.cs" />
+    <Compile Include="Interceptors\MeasureDurationInterceptor.cs" />
     <Compile Include="Posts\Dtos\CreatePostDto.cs" />
     <Compile Include="MapConfig.cs" />
     <Compile Include="Posts\Dtos\PostDto.cs" />
@@ -168,6 +169,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cache\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
