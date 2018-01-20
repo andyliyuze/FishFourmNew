@@ -71,9 +71,12 @@ namespace FishFourm.Api.Controllers
 
             var c = RequestContext;
 
-          
-            var posts = await _postAppService.GetAllPost();
-            return new JsonResponse(posts, 200);
+            try
+            {
+                var posts = await _postAppService.GetAllPost();
+                return new JsonResponse(posts, 200);
+            }
+            catch (Exception e){ throw e; }
         }
        
     }

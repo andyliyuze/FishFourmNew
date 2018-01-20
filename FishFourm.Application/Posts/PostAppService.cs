@@ -11,12 +11,14 @@ using FishFourm.Core.Entity;
 using System.Linq;
 using Abp.Authorization;
 using Abp.Runtime.Caching;
+using Castle.Core;
+using FishFourm.Application.Interceptors;
 
 namespace FishFourm.Application.Posts
 {
     public class PostAppService : ApplicationService, IPostAppService
     {
-        private readonly ICacheManager _cacheManager;
+     
         private readonly IPostRepository _postRepository;
         private readonly IUserRepository _userRepository;
         public PostAppService(IPostRepository postRepository,
@@ -28,6 +30,9 @@ namespace FishFourm.Application.Posts
 
         public async Task<IList<PostDto>> GetAllPost()
         {
+
+           
+
             var posts = await _postRepository.GetAllListAsync();
             var users = _userRepository.GetAll();
             var dtos = from p in posts
@@ -57,8 +62,8 @@ namespace FishFourm.Application.Posts
             return dtos.ToList();
         }
 
-         
 
+        [Interceptor(typeof(MeasureDurationInterceptor))]
         public async Task<PostDto> ReadPost(Guid postId)
         { 
            var post = await _postRepository.GetAsync(postId);

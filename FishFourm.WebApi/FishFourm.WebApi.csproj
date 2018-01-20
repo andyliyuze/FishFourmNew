@@ -244,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\log4net.config" />
     <None Include="log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
