@@ -122,7 +122,7 @@ namespace FishFourm.Test.Posts
             var count = UsingDbContext(a => a.Post.Count());
 
             //Assert       
-            Assert.True(flag);
+            Assert.NotNull(flag);
             Assert.Equal(countBefore + 1, count);
         }
 
