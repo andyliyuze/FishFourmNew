@@ -6,11 +6,10 @@ using System;
 namespace FishFourm.Application.Posts.Dtos
 {
     
-   public class PostDto : EntityDto<Guid>
+   public class PostOutput : EntityDto<Guid>
     {
         public string AuthorName { get; set; }
 
-        
         public Guid AuthorId { get;   set; }
 
         public string Title { get;   set; }

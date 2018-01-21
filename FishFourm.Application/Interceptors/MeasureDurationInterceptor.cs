@@ -29,31 +29,46 @@ namespace FishFourm.Application.Interceptors
         public void Intercept(IInvocation invocation)
         {
             //Before method execution
-            var stopwatch = Stopwatch.StartNew();
-            string key = string.Format("PostDto:Id:{0}", invocation.GetArgumentValue(0).ToString());
+            string key="";
+            if (invocation.MethodInvocationTarget.Name == "ReadPost")
+            {
+                key = string.Format("PostDto:Id:{0}", invocation.GetArgumentValue(0).ToString());
+            }
+            if (invocation.MethodInvocationTarget.Name == "GetAllPost")
+            {
+                key = "AllPosts";
+            }
             var Icache = _cacheManager.GetCache("post");
-            var cache = Icache.Get(key, () =>
+
+            var cache = Icache.GetOrDefault(key);
+
+            var getResultWay = "Cache";
+
+            if (cache == null)
             {
                 invocation.Proceed();
-                return invocation.ReturnValue;
-            }) ;
-            //Executing the actual method
-            // invocation.ReturnValue =Task.FromResult(list);
-            if (cache != null)
+
+                var type = invocation.Method.ReturnType;
+                var a = typeof(string);
+                //var resultw =( (Task<object>)invocation.ReturnValue ).Result  ;
+
+                var result = invocation.ReturnValue ;
+                Icache.Set(key, result);
+                getResultWay = "Database";
+            }
+            else 
             {
                 invocation.ReturnValue = cache;
-                return;
             }
+            //Executing the actual method          
            
-
+           
             // invocation.Proceed();
-            //After method execution
-            stopwatch.Stop();
+            //After method execution         
             _logger.InfoFormat(
-                "{0} executed in {1} milliseconds.",
-                invocation.MethodInvocationTarget.Name,
-                stopwatch.Elapsed.TotalMilliseconds.ToString("0.000")
-                );
+                "{0} executed and return with {1}.",
+                invocation.MethodInvocationTarget.Name, getResultWay);
+            return;
         }
     }
 
@@ -68,8 +83,8 @@ namespace FishFourm.Application.Interceptors
         {
             if (typeof(IApplicationService).IsAssignableFrom(handler.ComponentModel.Implementation))
             {
-                handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(MeasureDurationInterceptor)));
-                //    handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(MeasureDurationAsyncInterceptor)));
+               // handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(MeasureDurationInterceptor)));
+                  handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(CachePostAsyncInterceptor)));
             }
         }
     }

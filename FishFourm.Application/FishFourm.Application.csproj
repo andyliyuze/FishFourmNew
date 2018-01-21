@@ -149,11 +149,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FishFourmApplicationMoulde.cs" />
-    <Compile Include="Interceptors\MeasureDurationAsyncInterceptor.cs" />
+    <Compile Include="Interceptors\CachePostAsyncInterceptor.cs" />
     <Compile Include="Interceptors\MeasureDurationInterceptor.cs" />
-    <Compile Include="Posts\Dtos\CreatePostDto.cs" />
+    <Compile Include="Posts\Dtos\PostInput.cs" />
     <Compile Include="MapConfig.cs" />
-    <Compile Include="Posts\Dtos\PostDto.cs" />
+    <Compile Include="Posts\Dtos\PostOutput.cs" />
     <Compile Include="Posts\IPostAppService.cs" />
     <Compile Include="Posts\PostAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

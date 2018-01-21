@@ -9,14 +9,16 @@ namespace FishFourm.Application.Posts
 {
     public interface IPostAppService: IApplicationService
     {
-        Task<IList<PostDto>> GetAllPost();
+        Task<IList<PostOutput>> GetAllPost();
 
-        Task<PostDto> ReadPost(Guid Id);
+        Task<PostOutput> ReadPost(Guid Id);
 
-        Task<bool> CreatePost(CreatePostDto postDto);
+        Task<PostOutput> CreatePost(PostInput postDto);
 
-        Task<IEnumerable<PostDto>> GetPostsByAuthorId(Guid authorId);
+        Task<IEnumerable<PostOutput>> GetPostsByAuthorId(Guid authorId);
 
-        Task<bool> UpdatePost(PostDto postDto);
+        Task<PostOutput> UpdatePost(PostInput postDto);
+
+        Task<Guid> DeletePost(Guid Id);
     }
 }

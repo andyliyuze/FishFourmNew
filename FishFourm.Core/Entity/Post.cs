@@ -39,6 +39,8 @@ namespace FishFourm.Core.Entity
             Content = content;
             IsDel = false;
             CreateTime = DateTime.Now;
+
+            
         }
 
         public void Update(string title, string content)

@@ -37,7 +37,7 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("readPost")]
-       
+        
         public async Task<JsonResponse> ReadPost(string id)
         {
             var post = await _postAppService.ReadPost(Guid.Parse(id));
@@ -52,11 +52,11 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("createPost")]
-        public async Task<JsonResponse> CreatePost(CreatePostDto dto)
+        public async Task<JsonResponse> CreatePost(PostInput dto)
         {
             dto.AuthorId = UserInfo.Id;
-            var flag = await _postAppService.CreatePost(dto);
-            return new JsonResponse(flag, 200);
+            var Id = await _postAppService.CreatePost(dto);
+            return new JsonResponse(Id, 200);
         }
 
         /// <summary>

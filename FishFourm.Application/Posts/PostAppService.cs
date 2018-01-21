@@ -28,7 +28,7 @@ namespace FishFourm.Application.Posts
             _userRepository = userRepository;
         }
 
-        public async Task<IList<PostDto>> GetAllPost()
+        public async Task<IList<PostOutput>> GetAllPost()
         {
 
            
@@ -37,7 +37,7 @@ namespace FishFourm.Application.Posts
             var users = _userRepository.GetAll();
             var dtos = from p in posts
                        join u in users on p.AuthorId equals u.Id
-                       select new PostDto
+                       select new PostOutput
                        {
                            Id = p.Id,
                            AlterTime = p.AlterTime,
@@ -49,7 +49,7 @@ namespace FishFourm.Application.Posts
                        };
          dtos =  dtos.Where(a => a.IsDel == false).ToList();
             var postsdto = posts.Join(users, a => a.AuthorId, b => b.Id,
-                (a, b) => new PostDto
+                (a, b) => new PostOutput
                 {
                     Id = a.Id,
                     AlterTime = a.AlterTime,
@@ -63,8 +63,8 @@ namespace FishFourm.Application.Posts
         }
 
 
-        [Interceptor(typeof(MeasureDurationInterceptor))]
-        public async Task<PostDto> ReadPost(Guid postId)
+        
+        public async Task<PostOutput> ReadPost(Guid postId)
         { 
            var post = await _postRepository.GetAsync(postId);
       
@@ -76,22 +76,29 @@ namespace FishFourm.Application.Posts
             var user = await _userRepository.GetAsync(post.AuthorId);
             
             //两次Map才能拿到完整的postDto
-            var postDto = post.MapTo<PostDto>();
+            var postDto = post.MapTo<PostOutput>();
             Mapper.Map(user, postDto);
             return postDto;
         }
 
-        public async Task<bool> CreatePost(CreatePostDto postDto)
-        {
-            var post = new Post(postDto.AuthorId, postDto.Title, postDto.Content);
+        public async Task<PostOutput> CreatePost(PostInput postInput)
+        { 
+            var post = new Post(postInput.AuthorId, postInput.Title, postInput.Content);
             var postResult = await _postRepository.InsertAsync(post);
-            return postResult != null;
+
+            var user = await _userRepository.GetAsync(post.AuthorId);
+
+            //两次Map才能拿到完整的postDto
+            var postDto = postResult.MapTo<PostOutput>();
+            Mapper.Map(user, postDto);
+
+            return postDto;
         }
 
-        public async Task<IEnumerable<PostDto>> GetPostsByAuthorId(Guid authorId)
+        public async Task<IEnumerable<PostOutput>> GetPostsByAuthorId(Guid authorId)
         {  
             var posts = await _postRepository.GetAllListAsync(a => a.AuthorId == authorId);
-            var postDtos = posts.MapTo<IEnumerable<PostDto>>();
+            var postDtos = posts.MapTo<IEnumerable<PostOutput>>();
             var user = await _userRepository.GetAsync(authorId);
             foreach (var item in postDtos)
             {
@@ -101,12 +108,39 @@ namespace FishFourm.Application.Posts
             return postDtos;
         }
 
-        public async Task<bool> UpdatePost(PostDto postDto)
+        public async Task<PostOutput> UpdatePost(PostInput updatePostDto)
         {
-            var post = await _postRepository.GetAsync(postDto.Id);
-            post.Update(postDto.Title, postDto.Content);
-            var updatePost = await _postRepository.UpdateAsync(post);
-            return updatePost != null;
+            if (updatePostDto.Id == Guid.Empty)
+            {
+                throw new Exception("帖子Id不可以为空");
+            }
+
+            var post = await _postRepository.GetAsync(updatePostDto.Id);
+            post.Update(updatePostDto.Title, updatePostDto.Content);
+
+            var updatedPost = await _postRepository.UpdateAsync(post);
+            var user = await _userRepository.GetAsync(post.AuthorId);
+
+            var postDto = updatedPost.MapTo<PostOutput>();
+            Mapper.Map(user, postDto);
+
+            return postDto;
+        }
+
+        
+
+        public async Task<Guid> DeletePost(Guid Id)
+        {
+            if (Id == Guid.Empty)
+            {
+                throw new Exception("帖子Id不可以为空");
+            }
+
+            var post = await _postRepository.GetAsync(Id);
+
+            post.SoftDelete();
+
+            return post.Id;
         }
     }
 }

@@ -85,7 +85,7 @@ namespace FishFourm.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Create(CreatePostDto postInput)
+        public async Task<string> Create(PostInput postInput)
         {
             using (HttpClient client = new HttpClient())
             {

@@ -16,14 +16,14 @@ namespace FishFourm.Application
         public override void PreInitialize()
         {
             MapConfig.Config();
-            IocManager.IocContainer.Register(
-                Component.For<MeasureDurationInterceptor>().LifestyleTransient(),
-                Component.For<IPostAppService>().ImplementedBy<PostAppService>()
+            //IocManager.IocContainer.Register(
+            //    Component.For<MeasureDurationInterceptor>().LifestyleTransient(),
+            //    Component.For<IPostAppService>().ImplementedBy<PostAppService>()
               
-                                .Interceptors<MeasureDurationInterceptor>()
-                );
+            //                    .Interceptors<MeasureDurationInterceptor>()
+            //    );
           
-          //  MeasureDurationInterceptorRegistrar.Initialize(IocManager.IocContainer.Kernel);
+           MeasureDurationInterceptorRegistrar.Initialize(IocManager.IocContainer.Kernel);
         }
         public override void Initialize()
         {

@@ -15,8 +15,11 @@ namespace FishFourm.Application
                 cfg.CreateMap<UserRegisted, UserDTO>();
                 cfg.CreateMap<UserInfoUpdated, UserDTO>();
                 cfg.CreateMap<UserDTO, User>();
-                cfg.CreateMap<Post, PostDto>();
-                cfg.CreateMap<User, PostDto>().ForMember(d => d.AuthorName, opt => opt.MapFrom(s => s.UserName));
+                cfg.CreateMap<Post, PostOutput>();
+                cfg.CreateMap<User, PostOutput>()
+                .ForMember(d => d.Id, opt => opt.Ignore())
+                .ForMember(d => d.AuthorName, opt => opt.MapFrom(s => s.UserName))
+                .ForMember(d=>d.AuthorId ,opt=>opt.MapFrom(s=>s.Id));
             });
         }
     }
