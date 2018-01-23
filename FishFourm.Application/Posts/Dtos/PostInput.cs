@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace FishFourm.Application.Posts.Dtos
 {
-    public class CreatePostDto : EntityDto
+    public class PostInput : EntityDto<Guid>
     {
-        [Description("作者Id不可为空")]
-        [Required]
         public Guid AuthorId { get; set; }
  
         [Description("标题不可为空")]
@@ -22,8 +20,6 @@ namespace FishFourm.Application.Posts.Dtos
         [Description("内容不可为空")]
         [Required]
         public string Content { get; set; }
-
-
-         
+       
     }
 }

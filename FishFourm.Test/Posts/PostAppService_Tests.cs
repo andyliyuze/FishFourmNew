@@ -70,7 +70,7 @@ namespace FishFourm.Test.Posts
         [Fact]
         public async Task CreatePost_Test()
         {
-            CreatePostDto postDto = new CreatePostDto()
+            PostInput postDto = new PostInput()
             {
                 AuthorId = UsingDbContext<User>(a => a.User.FirstOrDefault()).Id,
                 Content = "HI",
@@ -110,7 +110,7 @@ namespace FishFourm.Test.Posts
             //Arrange
              _postAppService = LocalIocManager.Resolve<IPostAppService>();
             var countBefore = UsingDbContext(a => a.Post.Count());
-            CreatePostDto postDto = new CreatePostDto()
+            PostInput postDto = new PostInput()
             {
                 AuthorId = UsingDbContext<User>(a => a.User.FirstOrDefault()).Id,
                 Content = "HI",
@@ -122,7 +122,7 @@ namespace FishFourm.Test.Posts
             var count = UsingDbContext(a => a.Post.Count());
 
             //Assert       
-            Assert.True(flag);
+            Assert.NotNull(flag);
             Assert.Equal(countBefore + 1, count);
         }
 
