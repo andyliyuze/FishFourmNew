@@ -6,6 +6,8 @@ using System.Configuration;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security;
+using Castle.Facilities.Logging;
+using Abp.Dependency;
 
 [assembly: OwinStartup(typeof(FishFourm.WebApi.Startup))]
 
@@ -17,7 +19,7 @@ namespace FishFourm.WebApi
         {   
             var bootstrapper = AbpBootstrapper.Create<FishFourmWebApiModule>();
             bootstrapper.Initialize();
-            //IocManager.Instance.IocContainer.AddFacility<LoggingFacility>(f => f.UseAbpLog4Net().WithConfig("log4net.Config"));
+            IocManager.Instance.IocContainer.AddFacility<LoggingFacility>(f => f.UseAbpLog4Net().WithConfig("log4net.Config"));
             // 有关如何配置应用程序的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=316888
             // Configure Web API for Self-Host
             var httpConfig = bootstrapper.IocManager.Resolve<IAbpWebApiConfiguration>().HttpConfiguration;
