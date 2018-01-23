@@ -49,9 +49,6 @@
     <Reference Include="Abp, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.3.3.0\lib\netstandard2.0\Abp.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Castle.Log4Net, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Castle.Log4Net.3.3.0\lib\netstandard2.0\Abp.Castle.Log4Net.dll</HintPath>
-    </Reference>
     <Reference Include="Abp.Web, Version=3.2.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.Web.3.2.5\lib\net461\Abp.Web.dll</HintPath>
     </Reference>
