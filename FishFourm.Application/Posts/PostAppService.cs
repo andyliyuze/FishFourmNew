@@ -42,7 +42,7 @@ namespace FishFourm.Application.Posts
                            Title = p.Title,
                            AuthorName = u.UserName
                        };
-         dtos =  dtos.Where(a => a.IsDel == false).ToList();
+            dtos = dtos.Where(a => a.IsDel == false).ToList();
             var postsdto = posts.Join(users, a => a.AuthorId, b => b.Id,
                 (a, b) => new PostDto
                 {
@@ -60,7 +60,7 @@ namespace FishFourm.Application.Posts
          
 
         public async Task<PostDto> ReadPost(Guid postId)
-        { 
+        {
            var post = await _postRepository.GetAsync(postId);
       
             if (post == null)

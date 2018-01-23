@@ -30,7 +30,7 @@ namespace FishFourm.Application.Interceptors
 
             //Executing the actual method
             invocation.ReturnValue = null;
-
+            
             invocation.Proceed();
             //After method execution
             stopwatch.Stop();

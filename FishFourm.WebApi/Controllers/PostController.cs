@@ -68,10 +68,7 @@ namespace FishFourm.Api.Controllers
      
         public async Task<JsonResponse> PostList()
         {
-
             var c = RequestContext;
-
-          
             var posts = await _postAppService.GetAllPost();
             return new JsonResponse(posts, 200);
         }
