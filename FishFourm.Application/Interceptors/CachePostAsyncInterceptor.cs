@@ -73,7 +73,20 @@ namespace FishFourm.Application.Interceptors
 
             if (methodName == "GetPostsByAuthorId")
             {
-                cacheAction = "没有使用到缓存";
+                var Icache = _cacheManager.GetCache("post");
+               
+                //获取所有的帖子集合缓存
+                var allpostsTask =  Icache.GetOrDefault("AllPosts");
+
+                if (allpostsTask != null)
+                {
+                    cacheAction = "从缓存集合获取数据";
+                    var authorId = (Guid)invocation.Arguments[0];
+                    var allposts = ((Task<IList<PostOutput>>)allpostsTask).Result;
+                    invocation.ReturnValue = Task.FromResult<IEnumerable<PostOutput>>(allposts.Where(a => a.AuthorId == authorId));
+                    return;
+                }
+                cacheAction = "从数据库获取数据";
                 invocation.Proceed();
                 ((Task)invocation.ReturnValue).Wait();
             }
