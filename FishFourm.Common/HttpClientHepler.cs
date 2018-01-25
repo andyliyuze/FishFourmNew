@@ -52,10 +52,7 @@ namespace FishFourm.Common
             var result = await _httpClient.PostAsync(url, new FormUrlEncodedContent(dic));
             return result;
         }
-
-       
-
-
+    
         public void SetTimeout(double seconds)
         {
             _httpClient.Timeout = TimeSpan.FromSeconds(seconds);

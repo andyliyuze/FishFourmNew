@@ -5,6 +5,7 @@ using Castle.Core.Interceptor;
 using Castle.Core.Logging;
 using Castle.DynamicProxy;
 using Castle.MicroKernel;
+using FishFourm.Application.Posts;
 using FishFourm.Application.Posts.Dtos;
 using System;
 using System.Collections.Generic;
@@ -81,7 +82,7 @@ namespace FishFourm.Application.Interceptors
 
         private static void Kernel_ComponentRegistered(string key, IHandler handler)
         {
-            if (typeof(IApplicationService).IsAssignableFrom(handler.ComponentModel.Implementation))
+            if (typeof(IPostAppService).IsAssignableFrom(handler.ComponentModel.Implementation))
             {
                // handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(MeasureDurationInterceptor)));
                   handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(CachePostAsyncInterceptor)));

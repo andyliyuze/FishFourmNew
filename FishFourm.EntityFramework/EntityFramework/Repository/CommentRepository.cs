@@ -1,6 +1,7 @@
 ﻿using Abp.EntityFramework;
 using AutoMapper;
 using FishFourm.Core.Entity;
+using FishFourm.Core.Repository;
 using FishFourm.EntityFramework.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,22 @@ using System.Threading.Tasks;
 
 namespace FishFourm.EntityFramework.EntityFramework.Repository
 {
-   public class CommentRepository : FishFourmRepositoryBase<CommentDTO, Guid> 
+    public class CommentRepository : FishFourmRepositoryBase<Comment, Guid>, ICommentRepository
     {
         public CommentRepository(IDbContextProvider<FishFourmDbContext> dbContextProvider)
             : base(dbContextProvider)
         {
         }
 
-        public IEnumerable<Comment> GetComment(Guid postId)
+        public async Task<Comment> AddComment(Comment comment)
         {
-            IEnumerable<Comment> comments = new List<Comment>();
-            var commentDTOs = this.Context.Comment.Where(a => a.PostId == postId ).ToList();
-            foreach (var parent in commentDTOs)
-            {
-                var comment =  Mapper.Map<Comment>(comments);
-                var childComments = this.Context.Comment.Where(a => a.ParentCommentId == parent.Id).ToList();
-                comment.ChildComments = Mapper.Map<IEnumerable<Comment>>(childComments);
-                comments.
-            }
+            return await this.InsertAsync(comment);
+        }
+
+        public async Task<IEnumerable<Comment>> GetComments(Guid postId)
+        {
+            var comments = await this.GetAllListAsync(a => a.PostId == postId);
+            return comments;
         }
 
     }

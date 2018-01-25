@@ -1,7 +1,7 @@
 ﻿using Abp.WebApi.Controllers;
 using FishFourm.Application.Posts;
 using FishFourm.Application.Posts.Dtos;
-using FishFourm.Common; 
+using FishFourm.Common;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -11,7 +11,7 @@ using FishFourm.WebApi.Controllers;
 
 namespace FishFourm.Api.Controllers
 {
-    [AuthorizeAttribute]
+
     [RoutePrefix("api/post")]
     /// <summary>
     /// 111
@@ -25,7 +25,8 @@ namespace FishFourm.Api.Controllers
         /// 111
         /// </summary>
         /// <param name="postAppService"></param>
-        public PostController(IPostAppService postAppService)
+        public PostController(IPostAppService postAppService, IWebApiResponseHandle webApiResponseHandle)
+            : base(webApiResponseHandle)
         {
             _postAppService = postAppService;
         }
@@ -37,14 +38,14 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("readPost")]
-        
+
         public async Task<JsonResponse> ReadPost(string id)
         {
             var post = await _postAppService.ReadPost(Guid.Parse(id));
             return new JsonResponse(post, 200);
         }
 
-      
+
         /// <summary>
         /// 创建
         /// </summary>
@@ -52,6 +53,7 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("createPost")]
+        [AuthorizeAttribute]
         public async Task<JsonResponse> CreatePost(PostInput dto)
         {
             dto.AuthorId = UserInfo.Id;
@@ -65,18 +67,16 @@ namespace FishFourm.Api.Controllers
         /// <returns></returns>
         [Route("postList")]
         [HttpGet]
-     
+
         public async Task<JsonResponse> PostList()
         {
-            var c = RequestContext;
-
             try
             {
                 var posts = await _postAppService.GetAllPost();
                 return new JsonResponse(posts, 200);
             }
-            catch (Exception e){ throw e; }
+            catch (Exception e) { throw e; }
         }
-       
+
     }
 }

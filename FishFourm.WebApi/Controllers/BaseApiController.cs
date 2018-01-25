@@ -1,5 +1,6 @@
 ﻿using Abp.WebApi.Controllers;
 using FishFourm.Application.Users.DTO;
+using FishFourm.Common;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Security.Claims;
@@ -8,9 +9,10 @@ namespace FishFourm.WebApi.Controllers
 {
     public class BaseApiController : AbpApiController
     {
-        public BaseApiController()
+        protected readonly IWebApiResponseHandle _webApiResponseHandle;
+        public BaseApiController(IWebApiResponseHandle webApiResponseHandle)
         {
-            var identity = User.Identity as ClaimsIdentity;       
+            _webApiResponseHandle = webApiResponseHandle;
         }
 
         /// <summary>

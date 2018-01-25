@@ -13,7 +13,6 @@ namespace FishFourm.Application.Users
 {
     public class UserAppService : ApplicationService, IUserAppService
     {
-
         private readonly IUserRepository _userRepository;
         public UserAppService(IUserRepository userRepository)
         {

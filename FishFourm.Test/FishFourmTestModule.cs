@@ -1,6 +1,11 @@
-﻿using Abp.Modules;
+﻿using Abp.Castle.Logging.Log4Net;
+using Abp.Dependency;
+using Abp.Modules;
+using Castle.Core.Logging;
+using Castle.Facilities.Logging;
 using FishFourm.Application;
 using FishFourm.EntityFramework;
+using System.Reflection;
 
 namespace FishFourm.Test
 {
@@ -10,5 +15,11 @@ namespace FishFourm.Test
      )]
     public  class FishFourmTestModule : AbpModule
     {
+        public override void Initialize()
+        {
+            //MapConfig.Config();
+            IocManager.Register<ILogger, NullLogger>(DependencyLifeStyle.Transient);
+            IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+        }
     }
 }

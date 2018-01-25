@@ -142,6 +142,7 @@
     <Compile Include="Entity\Post.cs" />
     <Compile Include="Entity\Reply.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Repository\ICommentRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="FishFourmCoreMoulde.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

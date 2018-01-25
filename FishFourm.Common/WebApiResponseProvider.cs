@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FishFourm.Common
 {
-    public class WebApiResponseHelper
+    public class WebApiResponseProvider: IWebApiResponseHandle
     {
         public async Task<HttpResponseMessage> CreateHttpResponse<T>(HttpRequestMessage request, Func<Task<T>> function)
         {
@@ -21,8 +21,8 @@ namespace FishFourm.Common
             }
             catch (Exception ex)
             {
-                var resp = new WebApiResponse<string>() { Result = "", StatusCode = WebApiStatusCode.Failed, Msg = JsonConvert.SerializeObject(ex) };
-                response = request.CreateResponse<WebApiResponse<string>>(HttpStatusCode.OK, resp);
+                var resp = new WebApiResponse<string>() { Result = null, StatusCode = WebApiStatusCode.Failed, Msg = JsonConvert.SerializeObject(ex) };
+                response = request.CreateResponse<WebApiResponse<string>>(HttpStatusCode.InternalServerError, resp);
             }
 
             return response;

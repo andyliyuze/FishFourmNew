@@ -13,7 +13,9 @@ namespace FishFourm.EntityFramework
     {
         public virtual IDbSet<Post> Post { get; set; }
 
-        public virtual IDbSet<CommentDTO> Comment { get; set; }
+        public virtual IDbSet<Comment> Comment { get; set; }
+
+        public virtual IDbSet<Reply> Reply { get; set; }
 
         public virtual IDbSet<User> User { get; set; }
 

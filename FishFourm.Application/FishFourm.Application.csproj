@@ -151,6 +151,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coments\CommentAppService.cs" />
+    <Compile Include="Coments\DTO\CommentInput.cs" />
+    <Compile Include="Coments\DTO\CommentOutput.cs" />
+    <Compile Include="Coments\ICommentAppService.cs" />
     <Compile Include="FishFourmApplicationMoulde.cs" />
     <Compile Include="Interceptors\CachePostAsyncInterceptor.cs" />
     <Compile Include="Interceptors\MeasureDurationInterceptor.cs" />

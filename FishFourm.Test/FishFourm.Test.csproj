@@ -44,6 +44,9 @@
     <Reference Include="Abp, Version=3.2.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.3.2.5\lib\netstandard2.0\Abp.dll</HintPath>
     </Reference>
+    <Reference Include="Abp.Castle.Log4Net">
+      <HintPath>..\packages\Abp.Castle.Log4Net.3.3.0\lib\netstandard2.0\Abp.Castle.Log4Net.dll</HintPath>
+    </Reference>
     <Reference Include="Abp.EntityFramework, Version=3.2.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.EntityFramework.3.2.5\lib\net461\Abp.EntityFramework.dll</HintPath>
     </Reference>
@@ -202,6 +205,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentAppService_Test.cs" />
     <Compile Include="FishFourmTestBase.cs" />
     <Compile Include="FishFourmTestModule.cs" />
     <Compile Include="InitialData\FishFourmInitialDataBuilder.cs" />

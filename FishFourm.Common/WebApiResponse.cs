@@ -23,8 +23,8 @@
 
     public enum WebApiStatusCode
     {
-        Success,
-        Failed,
-        Unauthorized
+        Success = 200,
+        Failed = 500,
+        Unauthorized = 404
     }
 }

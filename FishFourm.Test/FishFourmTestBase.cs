@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Uow;
 using Abp.TestBase;
+using AutoMapper;
 using Castle.MicroKernel.Registration;
 using EntityFramework.DynamicFilters;
 using FishFourm.EntityFramework;
@@ -46,14 +47,18 @@ namespace FishFourm.Test
 
             using (var context = LocalIocManager.Resolve<FishFourmDbContext>())
             {
-
                 context.DisableAllFilters();
                 result = func(context);
                 context.SaveChanges();
-
             }
 
             return result;
+        }
+
+        public override void Dispose()
+        {
+            Mapper.Reset();
+            base.Dispose();
         }
     }
 }

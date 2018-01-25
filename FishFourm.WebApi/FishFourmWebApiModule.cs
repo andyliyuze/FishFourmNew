@@ -3,6 +3,7 @@ using Abp.Dependency;
 using Abp.Modules;
 using Abp.WebApi;
 using FishFourm.Application;
+using FishFourm.Common;
 using FishFourm.EntityFramework;
 using FishFourm.WebApi.App_Start;
 using System.Reflection;
@@ -14,7 +15,8 @@ namespace FishFourm.WebApi
     [DependsOn(
          typeof(AbpWebApiModule),
          typeof(FishFourmApplicationMoulde),
-         typeof(FishFourmEntityFrameworkMoulde)
+         typeof(FishFourmEntityFrameworkMoulde),
+        typeof(FishFourmCommonModule)
        )]
     public class FishFourmWebApiModule : AbpModule
     {

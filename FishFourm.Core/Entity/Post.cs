@@ -10,8 +10,6 @@ namespace FishFourm.Core.Entity
 {
     public class Post  : AggregateRoot<Guid>
     {
-      
-      
         public   Guid AuthorId { get; private set; }
 
         public string Title { get; private set; }
