@@ -1,5 +1,4 @@
-﻿using Abp.Castle.Logging.Log4Net;
-using Abp.Dependency;
+﻿using Abp.Dependency;
 using Abp.Modules;
 using Castle.Core.Logging;
 using Castle.Facilities.Logging;

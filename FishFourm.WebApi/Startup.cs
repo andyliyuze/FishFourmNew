@@ -9,6 +9,8 @@ using Microsoft.Owin.Security;
 using Castle.Facilities.Logging;
 using Abp.Dependency;
 using Abp.Castle.Logging.Log4Net;
+using System;
+
 [assembly: OwinStartup(typeof(FishFourm.WebApi.Startup))]
 
 namespace FishFourm.WebApi

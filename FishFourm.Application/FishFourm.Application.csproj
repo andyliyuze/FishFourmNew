@@ -156,6 +156,7 @@
     <Compile Include="Coments\DTO\CommentOutput.cs" />
     <Compile Include="Coments\ICommentAppService.cs" />
     <Compile Include="FishFourmApplicationMoulde.cs" />
+    <Compile Include="Interceptors\CacheAttribute.cs" />
     <Compile Include="Interceptors\CachePostAsyncInterceptor.cs" />
     <Compile Include="Interceptors\MeasureDurationInterceptor.cs" />
     <Compile Include="Posts\Dtos\PostInput.cs" />

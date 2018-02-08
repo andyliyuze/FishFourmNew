@@ -37,8 +37,7 @@ namespace FishFourm.Application.Coments
 
         public async Task<IEnumerable<CommentOutput>> GetComments(Guid postId)
         {
-            throw new Exception("bug");
-
+       
             var comments = await _commentRepository.GetComments(postId);
             var users = _userRepository.GetAll();
 

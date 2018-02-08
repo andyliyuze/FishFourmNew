@@ -13,6 +13,7 @@ using Abp.Authorization;
 using Abp.Runtime.Caching;
 using Castle.Core;
 using FishFourm.Application.Interceptors;
+using Abp.Domain.Uow;
 
 namespace FishFourm.Application.Posts
 {
@@ -46,6 +47,7 @@ namespace FishFourm.Application.Posts
             return postsdto;
         }
 
+        [Cache]
         public async Task<PostOutput> ReadPost(Guid postId)
         { 
            var post = await _postRepository.GetAsync(postId);
@@ -92,6 +94,7 @@ namespace FishFourm.Application.Posts
             return postDtos;
         }
 
+        [UnitOfWork]
         public async Task<PostOutput> UpdatePost(PostInput updatePostDto)
         {
             if (updatePostDto.Id == Guid.Empty)

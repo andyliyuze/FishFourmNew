@@ -29,6 +29,13 @@ namespace FishFourm.Application.Interceptors
 
         public void Intercept(IInvocation invocation)
         {
+            var cacheAttr = CacheAttribute.GetCacheAttributeOrNull(invocation.MethodInvocationTarget);
+            if (cacheAttr == null)
+            {
+                invocation.Proceed();
+                return;
+            }
+
             if (IsAsyncMethod(invocation.Method))
             {
                 InterceptAsync(invocation);

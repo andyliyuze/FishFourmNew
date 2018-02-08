@@ -23,6 +23,7 @@ namespace FishFourm.WebApi
         public override void PreInitialize()
         {
             IocManager.Register<FishFourmDbContext, FishFourmDbContext>(DependencyLifeStyle.Transient);
+            IocManager.Register<IWebApiResponseHandle, WebApiResponseProvider>(DependencyLifeStyle.Transient);
             Configuration.Modules.AbpWebApi().HttpConfiguration = new HttpConfiguration();
         }
 
