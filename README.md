@@ -8,6 +8,6 @@
 #### 4.多套系统集成，单点登录
 #### 5.OAuth2 实现身份验证，授权服务
 #### 6.Knockout.Js作为前端框架
-
+#### 7.使用MassTransit+RabbitMQ+Windowservice同步用户上下文的用户信息
 ###### 这是一个简单演示，没有登录的用户会到自动跳转授权中心登录，然后获得访问令牌，然后访问资源
 ![](https://github.com/andyliyuze/FishFourmNew/blob/master/FishFourm.WebApp/Content/loginflow.gif)
